@@ -1,0 +1,23 @@
+# Maintainer: Gerad Munsch <gmunsch@unforgivendevelopment.com>
+
+pkgname=nagios-virt-plugin
+_upstreampkgname=nagios-virt
+pkgver=0.2.0
+pkgrel=1
+pkgdesc="libvirt support for nagios - monitor your libvirt-based virtual machines"
+license=('GPL')
+arch=('i686' 'x86_64')
+url="http://people.redhat.com/~rjones/nagios-virt/"
+source=("http://people.redhat.com/~rjones/nagios-virt/${_upstreampkgname}-${pkgver}.tar.gz")
+depends=('nagios' 'libvirt' 'libxml2')
+
+build() {
+    cd ${srcdir}/${_upstreampkgname}-${pkgver}
+    ./configure --with-nagios-configdir=/etc/nagios
+    make || return 1
+}
+
+package() {
+    cd ${srcdir}/${_upstreampkgname}-${pkgver}
+    make install || return 1
+}

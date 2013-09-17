@@ -1,0 +1,10 @@
+.*
+!.gitignore
+*~
+src/
+pkg/
+*.tar.xz
+*.tar.gz
+
+# temporarily ignore linode-longview
+linode-longview/

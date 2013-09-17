@@ -1,0 +1,83 @@
+# Maintainer: Gerad Munsch <gmunsch@unforgivendevelopment.com>
+# Contributor: Anonymous
+# Generator  : CPANPLUS::Dist::Arch 1.13
+# vim:set ts=2 sw=2 et ft=sh tw=100: expandtab
+
+_author="M/MA/MARKPF"
+_perlmod="Log-Dispatch-FileRotate"
+pkgname='perl-log-dispatch-filerotate'
+pkgver='1.19'
+pkgrel='2'
+pkgdesc="Log::Dispatch::FileRotate - Log to files that archive/rotate themselves"
+arch=('any')
+license=('PerlArtistic'
+         'GPL')
+options=('!emptydirs')
+depends=('perl-date-manip'
+         'perl-log-dispatch'
+         'perl-log-log4perl>=1.0'
+         'perl-params-validate')
+url="http://search.cpan.org/dist/${_perlmod}"
+source=("http://search.cpan.org/CPAN/authors/id/${_author}/${_perlmod}-${pkgver}.tar.gz")
+md5sums=('8fabfe387bb070580f7c97c18853ae25')
+_distdir="${srcdir}/Log-Dispatch-FileRotate-1.19"
+
+build() {
+  # change working directory to extracted source
+  cd "${srcdir}/${_perlmod}-${pkgver}"
+  
+  # setting these env variables overwrites any command-line options we don't want
+  export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps   \
+  PERL_MM_OPT="INSTALLDIRS=vendor DESTDIR='$pkgdir'"         \
+  PERL_MB_OPT="--installdirs vendor --destdir '$pkgdir'"     \
+  MODULEBUILDRC=/dev/null
+  
+  # if using 'Makefile.PL'
+  if [ -r Makefile.PL ]; then
+    /usr/bin/perl Makefile.PL
+    make
+
+  # if using 'Build.PL'
+  elif [ -r Build.PL ]; then
+    /usr/bin/perl Build.PL
+    perl Build
+
+  fi
+}
+
+check() {
+  # change working directory to extracted source
+  cd "${srcdir}/${_perlmod}-${pkgver}"
+  
+  # if using 'Makefile.PL'
+  if [ -r Makefile.PL ]; then
+    /usr/bin/perl Makefile.PL
+    make test
+
+  # if using 'Build.PL'
+  elif [ -r Build.PL ]; then
+    /usr/bin/perl Build.PL
+    perl Build test
+
+  fi
+}
+
+package() {
+  # change working directory to extracted source
+  cd "${srcdir}/${_perlmod}-${pkgver}"
+  
+  # if using 'Makefile.PL'
+  if [ -r Makefile.PL ]; then
+    /usr/bin/perl Makefile.PL
+    make install
+
+  # if using 'Build.PL'
+  elif [ -r Build.PL ]; then
+    /usr/bin/perl Build.PL
+    perl Build install
+
+  fi
+  
+  # remove perllocal.pod and .packlist
+  find "${pkgdir}" -name .packlist -o -name perllocal.pod -delete
+}
