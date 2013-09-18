@@ -43,6 +43,7 @@ whisperer() {
     echo "For more info and troubleshooting visit:"
     echo "http://wiki.archlinux.org/index.php/ATI_Catalyst"
     echo "----------------------------------------------------------------"
+}
 
 post_install() {
     whisperer

@@ -12,9 +12,10 @@ pkgver=13.8
 pkgrel=1
 _amdver=13.101
 pkgdesc="AMD/ATI Catalyst drivers utilities and libraries with OpenCL implementation. Radeons HD 2 3 4 xxx ARE NOT SUPPORTED"
-arch=('i686' 'x86_64')
 url="http://www.amd.com"
 license=('custom')
+
+arch=('i686' 'x86_64')
 depends=('xorg-server>=1.7.0' 'xorg-server<1.15.0' 'libxrandr' 'libsm' 'fontconfig' 'libxcursor' 'libxi' 'gcc-libs' 'libxinerama')
 optdepends=('qt: to run ATi Catalyst Control Center (amdcccle)'
 	    'libxxf86vm: to run ATi Catalyst Control Center (amdcccle)'
@@ -22,17 +23,6 @@ optdepends=('qt: to run ATi Catalyst Control Center (amdcccle)'
 	    'acpid: acpi event support  / atieventsd')
 conflicts=('libgl' 'libcl' 'catalyst-utils')
 provides=('libgl' "libatical=${pkgver}" 'libcl' 'dri' 'libtxc_dxtn' 'catalyst-utils')
-install=catalyst-utils.install
-sha256sums=('76e03e39804882d738b809e201732e4bc3318c7c536f9f977ef06db42d7bf978'
-            'd5583bfb5977f73b4ca65533030f490350daca9e0ed10aefe517ffb70817531e'
-            '9b347c3f518ddf12bb08a3cf09afcc3096e5dd4488e7ca3445df97b392985e8b'
-            '398bade6ea2cb084043d87f6580569dd54b769055cdb518e2a074124c20f2606'
-            'fa043641b48f3fbd0ae22f8b9bce48d756878e2b955158fc9ad272c0db3da07a'
-            'd363f86928f218c1e7e892c4ab2aee06225ddd1e78398b715951ae9c902c3dcb'
-            '616a42a02b0a3f9d3f64aeaca1e5c5c8188deb1a9278ac99ca8be69a579034b3'
-            'c97a2735f80416151b2a71504e42385c4d8d95cf42aa8f90a6c7bd5a966c54e1'
-            'add4740d00500ac5edef39dbd4b5cd606cee8484ca9020e48bac90a912e45281')
-
 
 source=('http://www2.ati.com/drivers/beta/amd-catalyst-13.8-beta2-linux-x86.x86_64.zip'
         'catalyst.sh'
@@ -41,9 +31,16 @@ source=('http://www2.ati.com/drivers/beta/amd-catalyst-13.8-beta2-linux-x86.x86_
         'catalyst.conf'
         'arch-fglrx-authatieventsd.patch'
         'temp_links_catalyst'
-        'temp-links-catalyst.service'
-        'remove_watermark.sh')
-
+        'temp-links-catalyst.service')
+sha256sums=('76e03e39804882d738b809e201732e4bc3318c7c536f9f977ef06db42d7bf978'
+            'd5583bfb5977f73b4ca65533030f490350daca9e0ed10aefe517ffb70817531e'
+            '9b347c3f518ddf12bb08a3cf09afcc3096e5dd4488e7ca3445df97b392985e8b'
+            '398bade6ea2cb084043d87f6580569dd54b769055cdb518e2a074124c20f2606'
+            'fa043641b48f3fbd0ae22f8b9bce48d756878e2b955158fc9ad272c0db3da07a'
+            'f6f520249e359d01590423c9347e61ef600342af331111c23aae475cf2a038a5'
+            'efd26980888943293a7cf1d8d781b96b3bc7a5cdf23f926aa68ac4bc348b7691'
+            'c97a2735f80416151b2a71504e42385c4d8d95cf42aa8f90a6c7bd5a966c54e1')
+install=catalyst-utils.install
 
 build() {
 	/bin/sh ./amd-*.run --extract archive_files
@@ -135,7 +132,6 @@ package() {
 	
 	cd ${srcdir}/archive_files/common
 	patch -Np2 -i ${srcdir}/arch-fglrx-authatieventsd.patch
-	patch -Np2 -i ${srcdir}/zoqaeski_lightdm.patch
 	install -m644 etc/ati/* ${pkgdir}/etc/ati
 	chmod 755 ${pkgdir}/etc/ati/authatieventsd.sh
 	
@@ -183,7 +179,4 @@ package() {
 	#workaround for the high io bug , thanks to lano1106 for finding this ugly bug! https://bbs.archlinux.org/viewtopic.php?pid=1279977#p1279977
 	install -m755 ${srcdir}/temp_links_catalyst ${pkgdir}/usr/bin
 	install -m644 ${srcdir}/temp-links-catalyst.service ${pkgdir}/usr/lib/systemd/system
-	
-	#Install watermark removal script
-	install -m755 ${srcdir}/remove_watermark.sh ${pkgdir}/usr/bin/remove_watermark.sh
 }

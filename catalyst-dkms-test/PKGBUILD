@@ -21,9 +21,17 @@ conflicts=('catalyst' 'catalyst-dkms')
 provides=('catalyst')
 
 source=('http://www2.ati.com/drivers/beta/amd-catalyst-13.8-beta2-linux-x86.x86_64.zip'
-        'dkms.conf')
+        'dkms.conf'
+        'flim_fglrx_13.8_proc_perm.patch'
+        'lano1106_fglrx_intel_iommu.patch'
+        'lano1106_kcl_agp_13_4.patch'
+        'makefile_compat.patch')
 sha256sums=('76e03e39804882d738b809e201732e4bc3318c7c536f9f977ef06db42d7bf978'
-            '6b304e0b826ccd11942b3d4993063eaf41879f38b9eccce90e69253f6ec64816')
+            '6b304e0b826ccd11942b3d4993063eaf41879f38b9eccce90e69253f6ec64816'
+            'c7c58966fd8b6f847b203edd0516dbd78e6501fefb10fc53586b6d03df95f23d'
+            'd7ab220204976b5802dbfa7cbd05ec0c5a9ff3524a2020b1b8deff4f601a05fa'
+            '37344e6949b391a54491bcba68c2239393e442a00114ee36fe25d775d9656520'
+            '9c4d95c0fd06228d261253ee6451c5e20ae9d2bca24a26133400e3312c99c7e0')
 install=catalyst.install
 
 package() {
