@@ -1,0 +1,44 @@
+# Maintainer: Gerad Munsch <gmunsch@unforgivendevelopment.com>
+
+pkgname=mobile-radio-monitor-git
+_pkgname=mobile-radio-monitor
+pkgver=0.1.ge6aacd0
+pkgrel=1
+pkgdesc="Monitor QMI-based mobile broadband modems via libqmi (development version)"
+arch=('i686' 'x86_64')
+url="https://sigquit.wordpress.com/2013/09/17/mobile-radio-monitor/"
+license=('GPL3')
+depends=('libqmi' 'polkit' 'gtk3>=3.9')
+makedepends=('git')
+install="$_pkgname.install"
+conflicts=("$_pkgname")
+provides=("$_pkgname")
+source=("git://gitorious.org/aleksander/mobile-radio-monitor.git")
+md5sums=('SKIP')
+
+
+pkgver() {
+  cd "$_pkgname"
+
+  # NOTE: There are no tags in the git repository, so we will just manually
+  #       set the version number (currently '0.1')
+  printf "0.1.g%s" "$(git rev-parse --short HEAD)"
+}
+
+
+build() {
+  cd "$_pkgname"
+
+  ./autogen.sh
+  ./configure --prefix=/usr \
+              --sysconfdir=/etc \
+              --localstatedir=/var \
+              --sbindir=/usr/bin \
+              --disable-static
+  make
+}
+
+package() {
+  cd "$_pkgname"
+  make DESTDIR="$pkgdir" install
+}
