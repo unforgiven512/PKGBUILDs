@@ -15,11 +15,12 @@ _pkgver=`echo "$pkgver" | cut -d'_' -f1`
 _betaver=`echo "$pkgver" | cut -d'V' -f2`
 _reldate="01/08/2014"
 _amdver=13.25.18
-pkgrel=1
+pkgrel=5
 pkgdesc="AMD/ATI proprietary beta driver (DKMS module) (${_pkgver} beta V${_betaver} - ${_reldate}) -- Radeon HD 2xxx, 3xxx, 4xxx NOT SUPPORTED"
 arch=('i686' 'x86_64')
 url="http://support.amd.com/en-us/kb-articles/Pages/latest-linux-beta-driver.aspx"
 license=('custom')
+options=('staticlibs' 'libtool' '!strip' '!upx')
 depends=('dkms')
 optdepends=('linux-headers: build the module against Arch kernel'
             'linux-ck-headers: build the module against Linux-ck kernel'
@@ -33,7 +34,7 @@ conflicts=('catalyst'
            'catalyst-test-pxp'
            'catalyst-total'
            'catalyst-total-pxp')
-provides=('catalyst' 'catalyst-test')
+#provides=('catalyst' 'catalyst-test')
 
 source=("http://www2.ati.com/drivers/beta/amd-catalyst-${pkgver//_/-}-linux-x86.x86_64.zip"
         'dkms.conf'
@@ -57,9 +58,12 @@ install=catalyst.install
 url_ref="http://support.amd.com/en-us/kb-articles/Pages/latest-linux-beta-driver.aspx"
 DLAGENTS="http::/usr/bin/curl --referer ${url_ref} -o %o %u"
 
-package() {
-  depends=(${depends[@]} "catalyst-utils=${pkgver}")
+prepare() {
+  # add dependency on catalyst-utils-test
+  depends=(${depends[@]} "catalyst-utils-test=${pkgver}")
+}
 
+package() {
   cd ${srcdir}
 
   # determine architecture
