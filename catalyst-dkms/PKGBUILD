@@ -32,6 +32,7 @@ conflicts=('catalyst'
            'catalyst-test-pxp'
            'catalyst-total'
            'catalyst-total-pxp')
+provides=('catalyst')
 
 source=("http://www2.ati.com/drivers/linux/amd-catalyst-${pkgver}-linux-x86.x86_64.zip"
         "dkms.conf"
