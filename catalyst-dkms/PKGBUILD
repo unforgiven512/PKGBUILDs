@@ -14,7 +14,7 @@ _kernver=`uname -r`
 
 pkgname=catalyst-dkms
 pkgver=13.12
-pkgrel=3
+pkgrel=4
 pkgdesc="AMD proprietary gpu kernel driver (DKMS version)"
 arch=('i686' 'x86_64')
 url="http://support.amd.com/en-us/download/desktop?os=Linux+x86"
@@ -96,7 +96,7 @@ package() {
 
   # blacklist open-source radeon module from loading
   echo "blacklist radeon" >> "${pkgdir}/usr/lib/modprobe.d/catalyst.conf"
-  
+
   # install license
   install -Dm644 "common/usr/share/doc/fglrx/LICENSE.TXT" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.TXT"
 }
