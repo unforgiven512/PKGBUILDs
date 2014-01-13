@@ -14,7 +14,7 @@ _kernver=`uname -r`
 
 pkgname=catalyst-dkms
 pkgver=13.12
-pkgrel=2
+pkgrel=3
 pkgdesc="AMD proprietary gpu kernel driver (DKMS version)"
 arch=('i686' 'x86_64')
 url="http://support.amd.com/en-us/download/desktop?os=Linux+x86"
@@ -27,7 +27,6 @@ optdepends=('linux-headers: build the module against Arch kernel'
 # try to ensure that this package cannot be installed concurrently with any of
 # the other 'catalyst'-series packages
 conflicts=('catalyst'
-           'catalyst-test'
            'catalyst-dkms-test'
            'catalyst-test'
            'catalyst-test-pxp'
