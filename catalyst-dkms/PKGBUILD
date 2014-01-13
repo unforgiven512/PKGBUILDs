@@ -61,14 +61,12 @@ package() {
 
   cd ${srcdir}
 
-
   # determine architecture
   if [ "${CARCH}" = "x86_64" ]; then
     _archdir=x86_64
   else
     _archdir=x86
   fi
-
 
   # extract files from installer
   /bin/sh ./amd-catalyst-${pkgver}-linux-x86.x86_64.run --extract fglrx_installer-files
