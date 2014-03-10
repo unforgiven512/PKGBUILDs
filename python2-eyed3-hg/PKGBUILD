@@ -1,0 +1,35 @@
+# $Id$
+# Maintainer: Aaron Griffin <aaron@archlinux.org>
+# Contributor: Federico Quagliata (quaqo) <quaqo@despammed.com>
+# Contributor: cdhotfire <cdhotfire@gmail.com>
+
+pkgname=python2-eyed3-hg
+pkgver=r418.3302b70f33a8
+pkgrel=1
+pkgdesc="A Python module and program for processing information about mp3 files"
+arch=(any)
+url="http://eyed3.nicfit.net/"
+license=('GPL')
+depends=('python2')
+makedepends=('python2-setuptools'
+             'mercurial')
+source=("${pkgname}::hg+https://bitbucket.org/nicfit/eyed3#branch=stable")
+options=(!emptydirs)
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$pkgname"
+  printf "r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
+}
+
+build() {
+  cd $srcdir/$pkgname
+  python2 setup.py build
+}
+
+package() {
+  cd $srcdir/$pkgname
+  python2 setup.py install --root="${pkgdir}" --optimize=1
+  sed -i 's/python/python2/' $pkgdir/usr/bin/eyeD3
+}
+
