@@ -5,7 +5,7 @@
 
 pkgname=python2-eyed3-hg
 pkgver=r418.3302b70f33a8
-pkgrel=1
+pkgrel=2
 pkgdesc="A Python module and program for processing information about mp3 files"
 arch=(any)
 url="http://eyed3.nicfit.net/"
@@ -14,6 +14,8 @@ depends=('python2')
 makedepends=('python2-setuptools'
              'mercurial')
 source=("${pkgname}::hg+https://bitbucket.org/nicfit/eyed3#branch=stable")
+conflicts=('python2-eyed3')
+provides=('python2-eyed3')
 options=(!emptydirs)
 md5sums=('SKIP')
 
