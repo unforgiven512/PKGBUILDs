@@ -5,6 +5,8 @@ src/
 pkg/
 *.tar.xz
 *.tar.gz
+*.tar.xz.sig
+*.tar.gz.sig
 
 # temporarily ignore linode-longview
 linode-longview/
