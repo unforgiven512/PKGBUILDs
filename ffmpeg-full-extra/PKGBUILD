@@ -32,7 +32,7 @@ conflicts=('ffmpeg' 'ffmpeg-full' 'ffmpeg-git' 'ffmpeg-full-git')
 provides=('ffmpeg' 'qt-faststart')
 source=(http://ffmpeg.org/releases/$_pkgbasename-$pkgver.tar.bz2{,.asc}
         'UNREDISTRIBUTABLE.txt')
-sha256sums=('a42b97add671a0b40126261174397b5918e7ec219d8ec6b8e62e86aa0fb15218'
+sha256sums=('974f90a9d7bde835213ab970c2190402e5d6566e47a7bb657d756ee92540fa7e'
             'SKIP'
             'e0c1b126862072a71e18b9580a6b01afc76a54aa6e642d2c413ba0ac9d3010c4')
 
