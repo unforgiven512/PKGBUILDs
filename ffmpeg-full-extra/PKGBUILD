@@ -14,25 +14,26 @@
 
 pkgname=ffmpeg-full-extra
 _pkgbasename=ffmpeg
-pkgver=2.4.2
+pkgver=2.6.2
 pkgrel=1
 epoch=1
 pkgdesc="Record, convert, and stream audio and video (all codecs; compatible to extra/ffmpeg)"
 arch=('i686' 'x86_64')
 url="http://ffmpeg.org/"
 license=('GPL' 'custom:UNREDISTRIBUTABLE')
-depends=('alsa-lib' 'bzip2' 'fontconfig' 'faac' 'lame' 'libtheora' 'libva' 'sdl' 'libx264'
-         'libass' 'libbluray' 'libcaca' 'libiec61883' 'openal' 'twolame' 'libavc1394' 'xvidcore'
-         'schroedinger' 'v4l-utils' 'speex' 'opus' 'libvpx' 'jack' 'opencore-amr' 'rtmpdump'
-         'openjpeg' 'libmodplug' 'gsm' 'libpulse' 'vo-aacenc' 'vo-amrwbenc' 'celt' 'gnutls'
-         'libdc1394' 'libfdk-aac' 'libcdio-paranoia' 'libaacplus' 'libvorbis' 'zlib' 'libvdpau'
-         'x265' 'fribidi')
-makedepends=('libvdpau' 'yasm' 'pkg-config')
+depends=('alsa-lib' 'bzip2' 'celt' 'faac' 'fontconfig' 'fribidi' 'gnutls' 'gsm' 'jack' 'lame'
+         'libaacplus' 'libass' 'libavc1394' 'libbluray' 'libcaca' 'libcdio-paranoia' 'libdc1394'
+         'libfdk-aac' 'libiec61883' 'libmodplug' 'libpulse' 'libssh' 'libtheora' 'libva'
+         'libvdpau' 'libvorbis' 'openal' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
+         'speex' 'twolame' 'v4l-utils' 'vo-aacenc' 'vo-amrwbenc' 'xvidcore' 'zlib'
+         'libvpx.so' 'libx264.so' 'libx265.so')
+makedepends=('libvdpau' 'yasm' 'pkg-config' 'hardening-wrapper')
 conflicts=('ffmpeg' 'ffmpeg-full' 'ffmpeg-git' 'ffmpeg-full-git')
 provides=('ffmpeg' 'qt-faststart')
 source=(http://ffmpeg.org/releases/$_pkgbasename-$pkgver.tar.bz2{,.asc}
         'UNREDISTRIBUTABLE.txt')
-sha256sums=('974f90a9d7bde835213ab970c2190402e5d6566e47a7bb657d756ee92540fa7e'
+validpgpkeys=('FCF986EA15E6E293A5644F10B4322F04D67658D8')
+sha256sums=('889e3aa069b724dc95cbfc79ef83322a8a39d9f6225f39fad1b47294fc1f29ba'
             'SKIP'
             'e0c1b126862072a71e18b9580a6b01afc76a54aa6e642d2c413ba0ac9d3010c4')
 
@@ -70,9 +71,9 @@ build() {
     --enable-libopenjpeg \
     --enable-libopus \
     --enable-libpulse \
-    --enable-librtmp \
     --enable-libschroedinger \
     --enable-libspeex \
+    --enable-libssh \
     --enable-libtheora \
     --enable-libtwolame \
     --enable-libv4l2 \
@@ -87,10 +88,8 @@ build() {
     --enable-openal \
     --enable-openssl \
     --enable-postproc\
-    --enable-runtime-cpudetect \
     --enable-vaapi \
     --enable-vda \
-    --enable-vdpau \
     --enable-version3 \
     --enable-x11grab \
     --enable-zlib \
