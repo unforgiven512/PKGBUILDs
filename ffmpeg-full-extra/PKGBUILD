@@ -14,7 +14,7 @@
 
 pkgname=ffmpeg-full-extra
 _pkgbasename=ffmpeg
-pkgver=2.6.2
+pkgver=2.7.1
 pkgrel=1
 epoch=1
 pkgdesc="Record, convert, and stream audio and video (all codecs; compatible to extra/ffmpeg)"
@@ -24,16 +24,16 @@ license=('GPL' 'custom:UNREDISTRIBUTABLE')
 depends=('alsa-lib' 'bzip2' 'celt' 'faac' 'fontconfig' 'fribidi' 'gnutls' 'gsm' 'jack' 'lame'
          'libaacplus' 'libass' 'libavc1394' 'libbluray' 'libcaca' 'libcdio-paranoia' 'libdc1394'
          'libfdk-aac' 'libiec61883' 'libmodplug' 'libpulse' 'libssh' 'libtheora' 'libva'
-         'libvdpau' 'libvorbis' 'openal' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
+         'libvdpau' 'openal' 'opencore-amr' 'openjpeg' 'opus' 'schroedinger' 'sdl'
          'speex' 'twolame' 'v4l-utils' 'vo-aacenc' 'vo-amrwbenc' 'xvidcore' 'zlib'
-         'libvpx.so' 'libx264.so' 'libx265.so')
+         'libvorbisenc.so' 'libvorbis.so' 'libvpx.so' 'libx264.so' 'libx265.so')
 makedepends=('libvdpau' 'yasm' 'pkg-config' 'hardening-wrapper')
 conflicts=('ffmpeg' 'ffmpeg-full' 'ffmpeg-git' 'ffmpeg-full-git')
 provides=('ffmpeg' 'qt-faststart')
 source=(http://ffmpeg.org/releases/$_pkgbasename-$pkgver.tar.bz2{,.asc}
         'UNREDISTRIBUTABLE.txt')
 validpgpkeys=('FCF986EA15E6E293A5644F10B4322F04D67658D8')
-sha256sums=('889e3aa069b724dc95cbfc79ef83322a8a39d9f6225f39fad1b47294fc1f29ba'
+sha256sums=('7e07b97d2415feeae9c9b5595e35e7b7aab33207e81bf9f8c0d1eece43f7f720'
             'SKIP'
             'e0c1b126862072a71e18b9580a6b01afc76a54aa6e642d2c413ba0ac9d3010c4')
 
